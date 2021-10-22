@@ -424,21 +424,50 @@ console.log(x)
 //write a function that gets an array of strings. The function will go over all the array [] and return an object {} with the names of the strings as properties with the value as the index. must use reduce()
 
 
-let arr = ['firstName', 'lastName', 'age']
-    //        0            1           2
-    // we want:  
-    // { 
-    //     firstName: 0,
-    //     lastName: 1,
-    //     age: 2
-    // }
+// let arr = ['firstName', 'lastName', 'age']
+//        0            1           2
+// we want:  
+// { 
+//     firstName: 0,
+//     lastName: 1,
+//     age: 2
+// }
 
 
 
-let newObj = {}
+// let newObj = {}
 
-arr.reduce((accumulator, currVal) => {
-    newObj[accumulator] = arr.indexOf(accumulator)
-    newObj[currVal] = arr.indexOf(currVal)
-    delete newObj.undefined
-}, arr[0])
+// arr.reduce((accumulator, currVal) => {
+//     newObj[accumulator] = arr.indexOf(accumulator)
+//     newObj[currVal] = arr.indexOf(currVal)
+//     delete newObj.undefined
+// }, arr[0])
+
+// solution: 
+let arr = ['firstName', 'lastName', 'age', 'hobby']
+    // let newObj = {}
+
+arr.reduce((accumulator, currVal, currentIndex) => {
+    console.log('accumulator', accumulator)
+    console.log('currVal', currVal)
+    console.log('currentIndex', currentIndex)
+
+    accumulator[currVal] = currentIndex
+    return accumulator
+
+}, {})
+
+// console: 
+// accumulator {}
+// VM840:6 currVal firstName
+// VM840:7 currentIndex 0
+// VM840:5 accumulator {firstName: 0}
+// VM840:6 currVal lastName
+// VM840:7 currentIndex 1
+// VM840:5 accumulator {firstName: 0, lastName: 1}
+// VM840:6 currVal age
+// VM840:7 currentIndex 2
+// VM840:5 accumulator {firstName: 0, lastName: 1, age: 2}
+// VM840:6 currVal hobby
+// VM840:7 currentIndex 3
+// {firstName: 0, lastName: 1, age: 2, hobby: 3}
